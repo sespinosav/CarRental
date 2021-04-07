@@ -1,2 +1,2 @@
 # CarRental
-Web Service for Car Rental projecyt
+Web Service for Car Rental project
