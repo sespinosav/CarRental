@@ -20,44 +20,39 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+ta+li_o6z!c8*gjrn(4cv%ntrklp6*9b6bg)^=x6n0l1dmvk5'
+SECRET_KEY = '@gpg#6s*&zv1)$hpd)@jft5*k341e$h9wk_67z+$lsm&d!(a+d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    #Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     #Rest framewrok apps
     'rest_framework',
     'rest_framework.authtoken',
 
     #Local apps
-    'Car'
+    'Car',
+
+    #add cors
+    'corsheaders',
 ]
 
-# Rest Framework Authentications
-
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
-        'rest_framework.authentication.SessionAuthentication',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ],
 }
 
 MIDDLEWARE = [
@@ -68,7 +63,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+#Allow cors
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'CarRental.urls'
 
@@ -93,18 +94,16 @@ WSGI_APPLICATION = 'CarRental.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rentalCars',
-        'USER': 'sespinosav',
-        'PASSWORD': 'wtzVGD11',
+        'NAME': 'carRental',
+        'USER': 'carRentalManager',
+        'PASSWORD': '12345abcd',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
-
 
 
 # Password validation

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class CarConfig(AppConfig):
-    name = 'RentalCar'
+    name = 'Car'
